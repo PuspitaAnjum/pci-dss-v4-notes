@@ -3,198 +3,167 @@
 
 ### Objective
 
-The objective of Requirement 7 is to restrict access to system components and cardholder data based on business need to know.
+The objective of Requirement 7 is to ensure that users receive only the access they need to perform their job responsibilities.
 
-Users should receive only the access necessary to perform their job responsibilities.
+The core principle is:
 
----
-
-## Key Concept
-
-The principle behind Requirement 7 is:
-
-> Users should have access only to the resources and information required for their job.
-
-This is commonly associated with the principle of:
-
-**Least Privilege**
+> Need to Know + Least Privilege
 
 ---
 
-## Business Need to Know
+# What is Need to Know?
 
-Business need to know means that access is granted because a user has a legitimate business requirement to access specific information or systems.
+Need to know means a person receives access to information only when that access is necessary for their job.
 
 ### Example
 
-A database administrator may require access to a database server.
+A customer-support employee may need to see limited customer information.
 
-However, the same administrator may not need access to financial reports or unrelated business systems.
+They probably do not need:
 
-Access should therefore be limited according to actual responsibilities.
-
----
-
-## Access Control
-
-Organizations should define access requirements for:
-
-- Users
-- Administrators
-- Applications
-- System components
-- Cardholder data
-
-Access should be authorized before it is granted.
+- Database administrator access
+- Firewall administration
+- Full PAN access
+- Production server administrator privileges
 
 ---
 
-## Role-Based Access
+# What is Least Privilege?
 
-Organizations can use roles to simplify access management.
+Least privilege means users receive the minimum level of access required to perform their responsibilities.
+
+### Example
+
+If an employee only needs to read a database:
+
+Give:
+
+**Read access**
+
+Instead of:
+
+**Read + Write + Delete + Administrative access**
+
+---
+
+# 7.1 — Processes and Mechanisms
+
+Organizations should define and understand processes for restricting access to system components and cardholder data.
+
+Roles and responsibilities should be documented and understood.
+
+---
+
+# 7.2 — Access Control Model
+
+An access control model should define how access is granted.
+
+Access should consider:
+
+- Business needs
+- Job classification
+- Job function
+- Least privileges
+
+PCI DSS specifically requires the access-control model to define appropriate access based on business/access needs and the least privileges necessary for the job function. :contentReference[oaicite:5]{index=5}
+
+---
+
+# 7.2.1 — Define Access
+
+The organization should define what access different roles require.
 
 Example:
 
-### Employee
-
-- Email
-- Internal applications
-
-### Finance Team
-
-- Financial applications
-- Relevant financial records
-
-### Database Administrator
-
-- Database administration systems
-- Required database resources
-
-Each role receives only the access required to perform its responsibilities.
+| Role | Required Access |
+|---|---|
+| HR | HR systems |
+| Developer | Development environment |
+| Database Administrator | Database administration |
+| SOC Analyst | Security monitoring |
+| Finance | Financial systems |
 
 ---
 
-## Access Reviews
+# 7.2.2 — Assign Access
 
-Organizations should periodically review user access.
+Access should be assigned based on:
 
-Reviews can help identify:
+- Job classification
+- Job function
+- Least privilege
 
-- Excessive privileges
-- Unnecessary accounts
-- Former employees
-- Changed job responsibilities
-- Inappropriate access
+### Example
 
----
-
-## Access Removal
-
-When an employee leaves the organization, unnecessary access should be removed promptly according to the organization's access management procedures and applicable PCI DSS requirements.
+A junior developer should not automatically receive production administrator privileges.
 
 ---
 
-## Example Scenario
+# 7.2.3 — Approve Access
 
-### Situation
+Required privileges should be approved by authorized personnel.
 
-An employee moves from the Finance department to Marketing.
+Example:
 
-The employee still has access to the finance database.
+Employee requests:
 
-### Risk
+> Production database access
 
-The employee may have access to information that is no longer required for their job.
+Manager/Security/Owner reviews:
 
-### GRC Response
+> Is this access actually required?
 
-The organization should:
+If justified:
 
-1. Identify the employee's new role
-2. Review current permissions
-3. Remove unnecessary access
-4. Document the change
-5. Maintain evidence
+**Approve → Provision**
 
 ---
 
-## GRC / Audit Perspective
+# 7.2.4 — Review User Access
 
-An auditor may evaluate:
+User accounts and access privileges should be reviewed periodically.
 
-- Access control policies
-- Role definitions
-- User access lists
-- Access approval records
-- Periodic access reviews
-- Terminated-user records
-- Privileged access
-- Evidence of access removal
+The review should determine:
 
-The auditor wants to determine whether access is actually restricted according to business need.
+- Whether access is still required
+- Whether access matches the user's job
+- Whether inappropriate access exists
+- Whether management acknowledges the access remains appropriate
 
 ---
 
-## Examples of Audit Evidence
+# 7.2.5 — Application and System Accounts
 
-- Access control policy
-- User access matrix
-- Role-based access control configuration
-- Access approval tickets
-- User access review records
-- Termination records
-- Privileged access review
-- Identity management reports
+Application and system accounts also need to be managed.
 
----
+Examples:
 
-## Example Control
+- Database service accounts
+- Application accounts
+- API accounts
+- Automated process accounts
 
-### Control
-
-Access to cardholder data and system components is granted based on documented business need and approved according to organizational procedures.
-
-### Possible Evidence
-
-- Access request
-- Manager approval
-- Access matrix
-- User account configuration
-- Periodic access review
+These accounts should have appropriate privileges and ownership.
 
 ---
 
-## Interview Questions
+# Role-Based Access Control
 
-### Q1. What is the principle of least privilege?
+A common implementation is:
 
-Users should receive only the minimum access necessary to perform their assigned responsibilities.
+**RBAC — Role-Based Access Control**
 
-### Q2. What is business need-to-know?
+Instead of assigning permissions individually:
 
-Access is provided only when a user has a legitimate business requirement for specific systems or information.
+User → Role → Permissions
 
-### Q3. Why are access reviews important?
+Example:
 
-They help identify excessive, outdated, or inappropriate access.
-
----
-
-## Key Takeaways
-
-- Restrict access based on business need.
-- Apply least privilege.
-- Define access based on job responsibilities.
-- Review access periodically.
-- Remove unnecessary access when roles change.
-- Maintain evidence of approvals and reviews.
-
----
-
-## Reference
-
-PCI Security Standards Council — PCI DSS
-
-https://www.pcisecuritystandards.org/standards/pci-dss/
-
-These notes are for personal learning purposes and contain no confidential company or client information.
+```text
+Puspita
+   ↓
+GRC Analyst
+   ↓
+GRC Dashboard
+Audit Documents
+Risk Register
