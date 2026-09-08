@@ -3,135 +3,58 @@
 
 ### Objective
 
-The objective of Requirement 8 is to ensure that users are properly identified and authenticated before accessing systems and data.
+The objective of Requirement 8 is to ensure that users accessing system components can be uniquely identified and appropriately authenticated.
 
-Organizations should be able to associate system access with individual users.
+The basic principle is:
 
----
-
-## Key Concept
-
-Authentication answers:
-
-> "Who are you?"
-
-Authorization answers:
-
-> "What are you allowed to do?"
-
-Requirement 8 primarily focuses on identifying and authenticating users.
+> Every user should be identifiable and authenticated before receiving access.
 
 ---
 
-## User Identification
+# Why Authentication Matters
 
-Each individual user should have a unique identification mechanism where required.
+Without proper authentication, an attacker could potentially access systems using:
 
-Examples include:
+- Stolen credentials
+- Shared accounts
+- Weak passwords
+- Compromised authentication factors
 
-- Unique usernames
-- Individual user accounts
-- Unique IDs
-
-Shared accounts can make it difficult to determine who performed an activity.
-
----
-
-## Authentication Factors
-
-Authentication can use different factors.
-
-### Something You Know
-
-Examples:
-
-- Password
-- PIN
-
-### Something You Have
-
-Examples:
-
-- Security token
-- Authentication application
-- Smart card
-
-### Something You Are
-
-Examples:
-
-- Fingerprint
-- Facial recognition
-- Other biometric characteristics
+Strong authentication reduces these risks.
 
 ---
 
-## Multi-Factor Authentication (MFA)
+# 8.1 — Processes and Mechanisms
 
-MFA uses multiple authentication factors.
+Organizations should define and understand processes for identifying users and authenticating access.
 
-Example:
-
-**Password + Authentication App**
-
-This combines:
-
-- Something you know
-- Something you have
-
-MFA provides stronger authentication than relying on a password alone.
+Responsibilities should be assigned and understood.
 
 ---
 
-## Password Security
+# 8.2 — User Identification and Account Management
 
-Organizations should establish appropriate password and authentication requirements.
+Organizations should manage user accounts appropriately.
 
-Controls may include:
+Important concepts include:
 
-- Password length requirements
-- Password protection
-- Account lockout mechanisms
-- Secure authentication procedures
-- Protection against unauthorized credential use
-
----
-
-## Service Accounts
-
-Some applications require non-human or service accounts.
-
-These accounts should be managed securely and should not be treated like ordinary shared user accounts.
-
-Organizations should:
-
-- Assign ownership
-- Restrict privileges
-- Protect credentials
-- Monitor usage
-- Review accounts periodically
+- Unique user IDs
+- Account lifecycle management
+- User provisioning
+- User modification
+- User termination
+- Third-party accounts
+- Service accounts
 
 ---
 
-## Example Scenario
+# Unique User IDs
 
-### Situation
+Each individual should have a unique identifier.
 
-Five administrators use the same account:
-
-`admin`
-
-### Problem
-
-If a configuration change is made, it may be difficult to determine which individual performed the action.
-
-### Better Approach
-
-Each administrator receives an individual account.
-
-Example:
+### Bad Example
 
 ```text
-admin-puspita
-admin-user2
-admin-user3
+admin
+admin
+admin
